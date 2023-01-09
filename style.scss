@@ -1,0 +1,128 @@
+@import "assets/scss/config/fonts";
+@import "assets/scss/config/reset";
+@import "assets/scss/config/vars";
+@import "assets/scss/config/utility";
+@import "assets/scss/modules/typography";
+@import "assets/scss/modules/fields";
+@import "assets/scss/modules/buttons";
+@import "assets/scss/modules/toast";
+@import "assets/scss/config/global";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.app-author {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.app-container {
+  --gap: 15px;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: var(--bcs-grey-3);
+  padding: 10px;
+}
+
+.game {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 25px 35px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: var(--gap);
+  gap: var(--gap);
+  display: grid;
+  width: 100%;
+
+  max-width: 800px;
+
+  .title {
+    text-align: center;
+  }
+
+  .paragraph {
+    padding: 10px;
+    text-align: justify;
+    letter-spacing: 2.5px;
+    word-break: break-all;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    line-height: calc(24px + (32 - 24) * ((100vw - 300px) / (var(--maximumViewportWidth) - 300)));
+
+    span {
+      font-size: calc(16px + (22 - 16) * ((100vw - 300px) / (var(--maximumViewportWidth) - 300)));
+      font-weight: var(--fw-400);
+      position: relative;
+
+      &.active {
+        --color: #f07810;
+        color: var(--color);
+
+        &:before {
+          position: absolute;
+          content: "";
+          height: 2px;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          opacity: 0;
+          border-radius: 5px;
+          background-color: var(--color);
+          animation: blink 1s ease-in-out infinite;
+        }
+      }
+
+      &.incorrect {
+        color: #fff;
+        background-color: #dd7777;
+        border-radius: 4px;
+      }
+      &.correct {
+        color: #8bc24c;
+      }
+    }
+  }
+
+  ul {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: center;
+    }
+
+    li {
+      display: grid;
+      align-items: flex-start;
+      justify-items: flex-start;
+      gap: 5px;
+
+      @media (min-width: 576px) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    span {
+      font-weight: var(--fw-400);
+      background-color: var(--bcs-grey-3);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+  }
+
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
